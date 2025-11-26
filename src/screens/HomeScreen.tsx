@@ -1,8 +1,6 @@
 import { Dimensions, FlatList, Image, StyleSheet, Text, View } from 'react-native'
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import axios from 'axios'
-import { Product } from '../types/Product'
 import { useProducts } from '../context/ProductContext'
 import ProductCard from '../components/ProductCard'
 

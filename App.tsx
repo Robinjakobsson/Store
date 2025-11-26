@@ -1,4 +1,3 @@
-import { createNativeBottomTabNavigator } from '@react-navigation/bottom-tabs/unstable';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { RootStackParamList } from './src/types/navigation/RootStackParamList';
 import { NavigationContainer } from '@react-navigation/native';

@@ -1,6 +1,5 @@
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { useProducts } from '../context/ProductContext'
 import { Product } from '../types/Product';
 
 
