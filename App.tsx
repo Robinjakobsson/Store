@@ -3,8 +3,6 @@ import { RootStackParamList } from './src/types/navigation/RootStackParamList';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './src/screens/HomeScreen';
 
-
-
 const Tabs = createNativeBottomTabNavigator<RootStackParamList>();
 
 
