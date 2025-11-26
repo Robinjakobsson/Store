@@ -1,30 +1,34 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { Dimensions, FlatList, Image, StyleSheet, Text, View } from 'react-native'
+import React, { useContext, useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import axios from 'axios'
 import { Product } from '../types/Product'
+import { useProducts } from '../context/ProductContext'
+import ProductCard from '../components/ProductCard'
+
+const {width, height} = Dimensions.get("window");
 
 const HomeScreen = () => {
-  const [products, setProducts] = useState<Product[]>([])
-  useEffect(() => {
-  const getProducts = async () => {
-    try {
-      const response = await fetch('https://dummyjson.com/products');
-      const data = await response.json();
-      setProducts(data.products);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  getProducts();
-}, []);
-
+  const { products, loading} = useProducts();
+ 
 
   return (
-    <SafeAreaView>
-    <View>
-      <Text>{products[0]?.title}</Text>
+    <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
+    <View style={styles.container}>
+      <View style={styles.sectionTextContainer}>
+        <Text style={styles.sectionText}>Recommendation</Text>
+      </View>
+        <FlatList 
+          data={products}
+          keyExtractor={(product) => product.id.toString()}
+          numColumns={2}
+          columnWrapperStyle={{justifyContent: 'space-between'}}
+          contentContainerStyle={{padding: 10}}
+          renderItem={({item}) => <ProductCard  item={item}/> }
+        />
+
+
+        
     </View>
     </SafeAreaView>
   )
@@ -32,4 +36,18 @@ const HomeScreen = () => {
 
 export default HomeScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    padding: 15,
+  },
+  sectionText: {
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  sectionTextContainer: {
+    justifyContent:'center',
+  }
+
+  
+
+})

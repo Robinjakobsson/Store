@@ -7,11 +7,11 @@ export type Product = {
     discountPercentage: number;
     rating: number;
     stock: number;
-    tags: [string];
+    tags: string[];
     brand: string;
     sku: string;
     weight: number;
-    images: [string];
+    images: string[];
     thumbnail: string;
 
 }
