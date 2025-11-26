@@ -1,10 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { useCart } from '../context/CartContext'
+import CartCard from '../components/CartCard';
 
 const CartScreen = () => {
+    const { cart } = useCart();
   return (
     <View>
-      <Text>CartScreen</Text>
+      <FlatList 
+        data={cart}
+        keyExtractor={(product) => product.id.toString()}
+        renderItem={({item}) => (
+            <CartCard item={item} />
+        )}
+      
+      />
     </View>
   )
 }

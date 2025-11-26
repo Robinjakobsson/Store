@@ -24,10 +24,12 @@ export const CartProvider = ({ children }: Props) => {
 
     const addToCart = (product: Product) => {
         setCart(prev => [...prev, product])
+        console.log(product.title, "Has been added")
     }
 
     const removeFromCart = (id: number) => {
         setCart(prev => prev.filter(p => p.id !== id))
+        
     }
 
  return (

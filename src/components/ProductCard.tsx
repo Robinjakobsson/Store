@@ -1,15 +1,18 @@
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Product } from '../types/Product';
+import { useCart } from '../context/CartContext';
 
 
 const {width, height} = Dimensions.get("window");
+
 
 type ProductCardProps = {
     item: Product
 }
 
 const ProductCard = ({item}: ProductCardProps) => {
+    const { addToCart } = useCart();
   return (
     <View>
      <View style={styles.itemContainer}>
@@ -20,7 +23,7 @@ const ProductCard = ({item}: ProductCardProps) => {
       </View>
       <View style={styles.row}>
         <Text>${item.price}</Text>
-        <TouchableOpacity style={styles.buyButton} >
+        <TouchableOpacity onPress={() => addToCart(item)} style={styles.buyButton} >
             <Text style={styles.buyButtonText}>Buy</Text>
         </TouchableOpacity>
       </View>

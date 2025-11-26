@@ -4,7 +4,6 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useProducts } from '../context/ProductContext'
 import ProductCard from '../components/ProductCard'
 
-const {width, height} = Dimensions.get("window");
 
 const HomeScreen = () => {
   const { products, loading} = useProducts();
