@@ -25,7 +25,7 @@ function HomeStackScreen() {
       <HomeStack.Screen 
         name="ProductDetailScreen" 
         component={ProductDetailScreen} 
-        options={{ title: 'Product Detail' }} 
+        options={{ title: '' }} 
       />
     </HomeStack.Navigator>
   );
