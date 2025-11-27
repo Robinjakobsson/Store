@@ -11,8 +11,21 @@ type ProductCardProps = {
     item: Product
 }
 
+
 const ProductCard = ({item}: ProductCardProps) => {
-    const { addToCart } = useCart();
+    const { addToCart, cart } = useCart();
+
+    const handleAdd = () => {
+      // kollar om produkten finns i listan
+      const IsExisting = cart.some(p => p.id === item.id)
+        if (IsExisting) return console.log("Ökar kvantitet");
+
+        item.stock - 1
+        addToCart(item);
+        
+      //finns den redan så ökar vi quantity i carten och sänker stock
+      // finns den inte så lägger vi till den i kart
+    }
   return (
     <View>
      <View style={styles.itemContainer}>
@@ -22,8 +35,9 @@ const ProductCard = ({item}: ProductCardProps) => {
             <Text style={styles.productTitle}>{item.title}</Text>
       </View>
       <View style={styles.row}>
-        <Text>${item.price}</Text>
-        <TouchableOpacity onPress={() => addToCart(item)} style={styles.buyButton} >
+        <Text style={styles.priceText}>${item.price}</Text>
+
+        <TouchableOpacity onPress={handleAdd} style={styles.buyButton} >
             <Text style={styles.buyButtonText}>Buy</Text>
         </TouchableOpacity>
       </View>
@@ -75,5 +89,9 @@ const styles = StyleSheet.create({
     color: '#ffff',
     padding: 5,
     fontWeight: 'bold'
+  },
+  priceText: {
+    color: '#FFD700',
+    fontSize: 20,
   }
 })

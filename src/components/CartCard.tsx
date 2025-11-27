@@ -22,7 +22,7 @@ export default CartCard
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(255,255,255,0.7)',
+    backgroundColor: 'rgba(255,255,255,0.6)',
     flexDirection: 'row',
     borderRadius: 8,
     justifyContent: 'space-between',
