@@ -24,7 +24,7 @@ const CartScreen = () => {
       <View style={styles.checkOutContainer}>
         <View style={styles.sum}>
             <Text style={styles.sumText}>Total</Text>
-            <Text style={styles.sumText}>${totalSum}</Text>
+            <Text style={styles.sumText}>${totalSum.toFixed(2)}</Text>
         </View>
         <TouchableOpacity style={styles.cashOutButton}>
           <Text style={styles.cashOutButtonText}>Go to Kassan</Text>
