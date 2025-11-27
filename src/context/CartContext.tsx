@@ -7,12 +7,14 @@ type CartContextType = {
     cart: Product[]
     addToCart: (product: Product) => void;
     removeFromCart: (id: number) => void;
+    updateQuantity: (id: number, quantity: number) => void;
 }
 
 const CartContext = createContext<CartContextType>({
   cart: [],
   addToCart: () => {},
   removeFromCart: () => {},
+  updateQuantity: () => {}
 })
 
 export const useCart = () => useContext(CartContext);
@@ -48,8 +50,16 @@ export const CartProvider = ({ children }: Props) => {
         console.log(id)
     }
 
+    const updateQuantity = (id: number, newQuantity: number) => {
+      setCart(prev => 
+        prev.map(p =>
+          p.id === id ? { ...p, quantity: newQuantity } : p
+           ).filter(p => p.quantity! > 0) // tar bort produkter med quantity <= 0
+        );
+    };
+
  return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{updateQuantity, cart, addToCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
     );

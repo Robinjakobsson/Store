@@ -5,7 +5,10 @@ import CartCard from '../components/CartCard';
 
 const CartScreen = () => {
   const { cart } = useCart();
-  const totalSum = cart.reduce((sum,product) => sum + product.price, 0);
+  const totalSum = cart.reduce(
+    (sum, product) => sum + (product.price * (product.quantity ?? 1)),
+    0
+  );
     
   return (
     <View style={{flex: 1,}}>
