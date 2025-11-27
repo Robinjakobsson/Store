@@ -15,17 +15,7 @@ type ProductCardProps = {
 const ProductCard = ({item}: ProductCardProps) => {
     const { addToCart, cart } = useCart();
 
-    const handleAdd = () => {
-      // kollar om produkten finns i listan
-      const IsExisting = cart.some(p => p.id === item.id)
-        if (IsExisting) return console.log("Ökar kvantitet");
-
-        item.stock - 1
-        addToCart(item);
-        
-      //finns den redan så ökar vi quantity i carten och sänker stock
-      // finns den inte så lägger vi till den i kart
-    }
+    
   return (
     <View>
      <View style={styles.itemContainer}>
@@ -37,7 +27,7 @@ const ProductCard = ({item}: ProductCardProps) => {
       <View style={styles.row}>
         <Text style={styles.priceText}>${item.price}</Text>
 
-        <TouchableOpacity onPress={handleAdd} style={styles.buyButton} >
+        <TouchableOpacity onPress={() => addToCart(item)} style={styles.buyButton} >
             <Text style={styles.buyButtonText}>Buy</Text>
         </TouchableOpacity>
       </View>
@@ -45,6 +35,7 @@ const ProductCard = ({item}: ProductCardProps) => {
      
   )
 }
+
 
 export default ProductCard
 
@@ -93,5 +84,6 @@ const styles = StyleSheet.create({
   priceText: {
     color: '#FFD700',
     fontSize: 20,
+    fontWeight: 'bold'
   }
 })

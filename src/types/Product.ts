@@ -13,5 +13,6 @@ export type Product = {
     weight: number;
     images: string[];
     thumbnail: string;
+    quantity?: number;
 
 }
