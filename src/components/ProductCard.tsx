@@ -2,25 +2,29 @@ import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'rea
 import React from 'react'
 import { Product } from '../types/Product';
 import { useCart } from '../context/CartContext';
-
-
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types/navigation/RootStackParamList';
 const {width, height} = Dimensions.get("window");
-
 
 type ProductCardProps = {
     item: Product
 }
 
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'HomeScreen'>;
 
 const ProductCard = ({item}: ProductCardProps) => {
-    const { addToCart, cart } = useCart();
+    const { addToCart } = useCart();
+    const navigation = useNavigation<NavigationProp>();
 
     
   return (
     <View>
+      <TouchableOpacity onPress={() => navigation.navigate('ProductDetailScreen', item)}>
      <View style={styles.itemContainer}>
         <Image source={{uri: item.thumbnail}} style={styles.image} />
      </View>
+     </TouchableOpacity>
       <View style={styles.textContainer}>
             <Text style={styles.productTitle}>{item.title}</Text>
       </View>
@@ -30,8 +34,10 @@ const ProductCard = ({item}: ProductCardProps) => {
         <TouchableOpacity onPress={() => addToCart(item)} style={styles.buyButton} >
             <Text style={styles.buyButtonText}>Buy</Text>
         </TouchableOpacity>
+        
       </View>
      </View>
+     
      
   )
 }
